@@ -32,7 +32,7 @@ var data = rows;
     var thisDistrict = "All Districts";
 
 d3.select("#schoolsList").selectAll(".switch")
-  .data(data.filter(function(d) { return d.year == "15 to 16" && d.subject == "R"; })).enter().append("div")
+  .data(data.filter(function(d) { return d.year == "16 to 17" && d.subject == "R"; })).enter().append("div")
   .attr("class",function(d) { return "switch"; })
   .attr("categoryr",function(d) { 
     var category;
@@ -58,7 +58,7 @@ d3.select("#schoolsList").selectAll(".switch")
   .attr("categorym",function(d) { 
     var category;
         for (var k=0; k < data.length; k++){
-      if (data[k].school == d.school && data[k].district == d.district && data[k].subject == "M" && data[k].year == "15 to 16"){
+      if (data[k].school == d.school && data[k].district == d.district && data[k].subject == "M" && data[k].year == "16 to 17"){
         category = data[k].category;
       }
     }
@@ -88,7 +88,7 @@ d3.select("#schoolsList").selectAll(".switch")
     switchChart(d.school,d.district);
 
     for (var k=0; k < data.length; k++){
-      if (data[k].school == d.school && data[k].district == d.district && data[k].subject == "M" && data[k].year == "15 to 16"){
+      if (data[k].school == d.school && data[k].district == d.district && data[k].subject == "M" && data[k].year == "16 to 17"){
         $("#categoryM").html(data[k].category);
         $("#categoryR").html(d.category);
         $("#mPCT").html(d3.format("%")(data[k].profpct) + " proficiency");
@@ -161,7 +161,7 @@ d3.select("#schoolsList").selectAll(".switch")
 
     if (all == true){
     for (var k=0; k < data.length; k++){
-      if (data[k].subject == "M" && data[k].year == "15 to 16"){
+      if (data[k].subject == "M" && data[k].year == "16 to 17"){
         totalSchools++;
         if (data[k].povertycat == "Medium") { metCount++; }
         if (data[k].povertycat == "High") { failCount++; }
@@ -171,7 +171,7 @@ d3.select("#schoolsList").selectAll(".switch")
     }
     } else {
     for (var k=0; k < data.length; k++){
-      if (data[k].district == district && data[k].subject == "M" && data[k].year == "15 to 16"){
+      if (data[k].district == district && data[k].subject == "M" && data[k].year == "16 to 17"){
         totalSchools++;
         if (data[k].povertycat == "Medium") { metCount++; }
         if (data[k].povertycat == "High") { failCount++; }
@@ -195,7 +195,7 @@ d3.select("#schoolsList").selectAll(".switch")
 
     if (all == true){
     for (var k=0; k < data.length; k++){
-      if (data[k].subject == "M" && data[k].year == "15 to 16"){
+      if (data[k].subject == "M" && data[k].year == "16 to 17"){
         totalSchools++;
         if (data[k].category == "About as expected") { metCount++; }
         if (data[k].category == "Falling short") { failCount++; }
@@ -205,7 +205,7 @@ d3.select("#schoolsList").selectAll(".switch")
     }
     } else {
     for (var k=0; k < data.length; k++){
-      if (data[k].district == district && data[k].subject == "M" && data[k].year == "15 to 16"){
+      if (data[k].district == district && data[k].subject == "M" && data[k].year == "16 to 17"){
         totalSchools++;
         if (data[k].category == "About as expected") { metCount++; }
         if (data[k].category == "Falling short") { failCount++; }
@@ -229,7 +229,7 @@ d3.select("#schoolsList").selectAll(".switch")
 
     if (all == true){
     for (var k=0; k < data.length; k++){
-      if (data[k].subject == "R" && data[k].year == "15 to 16"){
+      if (data[k].subject == "R" && data[k].year == "16 to 17"){
         totalSchools++;
         if (data[k].category == "About as expected") { metCount++; }
         if (data[k].category == "Falling short") { failCount++; }
@@ -239,7 +239,7 @@ d3.select("#schoolsList").selectAll(".switch")
     }
     } else {
     for (var k=0; k < data.length; k++){
-      if (data[k].district == district && data[k].subject == "R" && data[k].year == "15 to 16"){
+      if (data[k].district == district && data[k].subject == "R" && data[k].year == "16 to 17"){
         totalSchools++;
         if (data[k].category == "About as expected") { metCount++; }
         if (data[k].category == "Falling short") { failCount++; }
@@ -445,13 +445,16 @@ for (var i=0; i < data.length; i++){
 
     if (data[i].subject == 'M'){
       dataM[indexYear] = data[i].profpct;
-      axis[indexYear] = data[i].year;
+      // axis[indexYear] = data[i].year;
       indexYear++;
       dataMP = data[i].predicted;
     }
     
   }
 }
+
+if (dataR.length > dataM.length) { dataM[dataM.length] = 0; }
+else if (dataR.length < dataM.length) { dataR[dataR.length] = 0; }
 
 if (found == true){
 
